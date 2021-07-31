@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { app } from './app';
 import { initializationService } from './data/init-sample-data';
+import fetchMoviesJob from './jobs/fetch-movies';
 
 require('dotenv').config();
 
@@ -22,6 +23,7 @@ const start = async () => {
     }
 
     await initializationService.initSampleData();
+    await fetchMoviesJob.start();
 };
 
 start();
