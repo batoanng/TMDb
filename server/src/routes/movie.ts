@@ -9,7 +9,7 @@ router.get(
     [],
     validateRequest,
     async (req: Request, res: Response) => {
-        const movies = await movieService.getAllMovies(req.params);
+        const movies = await movieService.getAllMovies(req.query);
         res.send(movies);
     }
 );

@@ -3,14 +3,21 @@ import { NotFoundError } from '../errors/not-found-error';
 
 const instance = {
     async getAllMovies(filter: object) {
-        console.log(filter);
+        // @ts-ignore
+        const { page, limit, sort_by } = filter;
         const options = {
-            page: 1,
-            limit: 20,
+            page: page ? page : 1,
+            limit: limit ? limit : 20,
         };
         try {
             let aggregate = Movie.aggregate();
-            aggregate.sort({ popularity: -1 });
+            if (sort_by) {
+                const [field, value] = sort_by.split('.');
+                const sortArg = {};
+                // @ts-ignore
+                sortArg[field] = value === 'desc' ? -1 : 1;
+                aggregate.sort(sortArg);
+            }
             aggregate.project({
                 _id: 0,
                 id: 1,
@@ -28,7 +35,6 @@ const instance = {
                 vote_average: 1,
                 vote_count: 1,
             });
-
             // @ts-ignore
             const movies = await Movie.aggregatePaginate(aggregate, options);
             return movies;
