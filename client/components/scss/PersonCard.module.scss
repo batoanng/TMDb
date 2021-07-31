@@ -1,15 +1,14 @@
-.movie{
+.person{
   width: 150px;
   margin: 0 20px 0 20px;
   display: inline-block;
   white-space: normal;
-  float: left;
 
   >div{
     border: none;
   }
 
-  .movieImage{
+  .personImage{
     min-height: calc(150px * 1.5);
     height: calc(150px * 1.5);
     box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
@@ -20,24 +19,13 @@
     padding: 30px 0 0 0;
     position: relative;
 
-    .progressBar{
-      width: 34px;
-      height: 34px;
-      font-weight: bold;
-      background-color: #000;
-      border-radius: 50%;
-      position: absolute;
-      left: 10px;
-      top: -17px;
-    }
-
-    .title{
+    .name{
       font-weight: 700;
       color: #000;
       margin: 0;
     }
 
-    .date{
+    .role{
       font-size: 1em;
       color: rgba(0,0,0,0.6);
     }

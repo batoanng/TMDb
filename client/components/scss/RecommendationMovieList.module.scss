@@ -1,11 +1,18 @@
 .outer{
   margin-bottom: 40px;
+  max-width: 920px;
+
+  .title{
+    font-weight: 600;
+    font-size: 1.4em;
+    margin-bottom: 30px;
+  }
 
   .list{
     white-space: nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
-    width: 100%;
+    width: auto;
     padding-bottom: 20px;
   }
 }
