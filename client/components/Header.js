@@ -9,8 +9,13 @@ import {
 	Navbar,
 	NavDropdown,
 } from 'react-bootstrap';
+import Image from 'next/image';
 
 const Header = () => {
+	const handleSearch = () => {
+		console.log('show search');
+	};
+
 	return (
 		<Navbar
 			collapseOnSelect
@@ -34,7 +39,10 @@ const Header = () => {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
-						<NavDropdown title="Movies">
+						<NavDropdown
+							title="Movies"
+							className={style.dropdownTitle}
+						>
 							<NavDropdown.Item as={Button}>
 								<Link href="/movies/latest">
 									<a>Latest</a>
@@ -48,10 +56,27 @@ const Header = () => {
 						</NavDropdown>
 					</Nav>
 					<Nav className="ml-auto">
-						<Nav.Link href="#deets">More deets</Nav.Link>
-						<Nav.Link eventKey={2} href="#memes">
-							Dank memes
-						</Nav.Link>
+						<Nav.Item className="mr-4 mt-1">
+							<Image
+								src="/plus-icon.svg"
+								alt="TMDb"
+								width="24"
+								height="24"
+							/>
+						</Nav.Item>
+						<Nav.Item
+							className={`mr-4 mt-1  mb-1 ${style.language}`}
+						>
+							<div>EN</div>
+						</Nav.Item>
+						<Nav.Item onClick={handleSearch}>
+							<Image
+								src="/search-icon.svg"
+								alt="TMDb"
+								width="36"
+								height="36"
+							/>
+						</Nav.Item>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

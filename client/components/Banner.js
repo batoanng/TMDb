@@ -1,5 +1,4 @@
 import style from './scss/Banner.module.scss';
-import Image from 'next/image';
 import { Button, Form } from 'react-bootstrap';
 import React, { useState } from 'react';
 
@@ -27,11 +26,11 @@ const Banner = () => {
 					</h3>
 				</div>
 				<div>
-					<Form onSubmit={handleSubmit}>
+					<Form onSubmit={handleSubmit} className={style.search}>
 						<Form.Control
 							type="text"
 							name="search"
-							placeholder="Search for a movie, tv show, person......"
+							placeholder="Search for a movie......"
 							value={search}
 							onChange={handleChange}
 						/>
