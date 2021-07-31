@@ -1,0 +1,56 @@
+.footer {
+	background-image: radial-gradient(at 30% top, #031d33 0%, rgba(var(--darkBlue), 1) 70%);
+	color: #fff;
+
+	&Content{
+		width: 100%;
+		padding: 30px 60px;
+		display: flex;
+
+		.logo {
+			display: inline-block;
+
+			.greeting {
+				width: 100%;
+				margin-top: 20px;
+				font-size: 1.3em;
+				font-weight: bold;
+				color: rgba(var(--lightBlue), 1);
+				background-color: #fff;
+				border-radius: 5px;
+				padding: 8px 16px;
+				text-align: center;
+			}
+		}
+
+		.information {
+			margin-left: 20px;
+			margin-top: 20px;
+			flex-grow: 1;
+
+			h3 {
+				font-weight: bold;
+				font-size: 1.4em;
+				text-transform: uppercase;
+				white-space: nowrap;
+			}
+
+			ul{
+				list-style-type: none;
+				padding: 0;
+
+				a:link,
+				a:visited {
+					color: #fff;
+					text-decoration: none;
+				}
+
+				a:link:active,
+				a:visited:active {
+					color: #fff;
+				}
+			}
+		}
+
+	}
+}

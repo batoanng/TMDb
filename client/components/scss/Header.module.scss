@@ -1,0 +1,21 @@
+.header {
+	background-image: radial-gradient(at 30% top, #031d33 0%, rgba(var(--darkBlue), 1) 70%);
+
+	height: 64px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	transition: top 0.2s ease-in-out;
+	width: 100%;
+
+	//a:link,
+	//a:visited {
+	//  color: #fff;
+	//  text-decoration: none;
+	//}
+	//
+	//a:link:active,
+	//a:visited:active {
+	//  color: #fff;
+	//}
+}

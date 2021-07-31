@@ -1,0 +1,143 @@
+@mixin transition($transition...) {
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+@mixin transition-property($property...) {
+  -moz-transition-property: $property;
+  -o-transition-property: $property;
+  -webkit-transition-property: $property;
+  transition-property: $property;
+}
+@mixin transition-duration($duration...) {
+  -moz-transition-property: $duration;
+  -o-transition-property: $duration;
+  -webkit-transition-property: $duration;
+  transition-property: $duration;
+}
+@mixin transition-timing-function($timing...) {
+  -moz-transition-timing-function: $timing;
+  -o-transition-timing-function: $timing;
+  -webkit-transition-timing-function: $timing;
+  transition-timing-function: $timing;
+}
+@mixin transition-delay($delay...) {
+  -moz-transition-delay: $delay;
+  -o-transition-delay: $delay;
+  -webkit-transition-delay: $delay;
+  transition-delay: $delay;
+}
+
+@mixin translateXY($vertical, $horizontal) {
+  transform: translate($vertical, $horizontal);
+  -webkit-transform: translate($vertical, $horizontal);
+  -moz-transform: translate($vertical, $horizontal);
+  -ms-transform: translate($vertical, $horizontal);
+  -o-transform: translate($vertical, $horizontal);
+}
+
+@mixin translateX($horizontal) {
+  transform: translateX($horizontal);
+  -webkit-transform: translateX($horizontal);
+  -moz-transform: translateX($horizontal);
+  -ms-transform: translateX($horizontal);
+  -o-transform: translateX($horizontal);
+}
+
+@mixin translateY($vertical) {
+  transform: translateY($vertical);
+  -webkit-transform: translateY($vertical);
+  -moz-transform: translateY($vertical);
+  -ms-transform: translateY($vertical);
+  -o-transform: translateY($vertical);
+}
+
+@mixin rotateXY($degree) {
+  transform: rotate($degree);
+  -webkit-transform: rotate($degree);
+  -moz-transform: rotate($degree);
+  -ms-transform: rotate($degree);
+  -o-transform: rotate($degree);
+}
+
+@mixin rotateY($degree) {
+  transform: rotateY($degree);
+  -webkit-transform: rotateY($degree);
+  -moz-transform: rotateY($degree);
+  -ms-transform: rotateY($degree);
+  -o-transform: rotateY($degree);
+}
+
+@mixin scale($size) {
+  transform: scale($size);
+  -webkit-transform: scale($size);
+  -moz-transform: scale($size);
+  -ms-transform: scale($size);
+  -o-transform: scale($size);
+}
+
+@mixin transform($trans) {
+  transform: $trans;
+  -webkit-transform: $trans;
+  -moz-transform: $trans;
+  -ms-transform: $trans;
+  -o-transform: $trans;
+}
+
+@mixin animation-delay($delay) {
+  animation-delay: $delay;
+  -webkit-animation-delay: $delay;
+  -moz-animation-delay: $delay;
+  -ms-animation-delay: $delay;
+  -o-animation-delay: $delay;
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+@mixin animation($animate...) {
+  $max: length($animate);
+  $animations: '';
+  @for $i from 1 through $max {
+    $animations: #{$animations + nth($animate, $i)};
+    @if $i < $max {
+      $animations: #{$animations + ', '};
+    }
+  }
+  -webkit-animation: $animations;
+  -moz-animation: $animations;
+  -o-animation: $animations;
+  animation: $animations;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}

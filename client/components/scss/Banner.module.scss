@@ -1,0 +1,33 @@
+.banner {
+  background-image: linear-gradient(to right, rgba(var(--darkBlue), 0.8) 0%, rgba(var(--darkBlue), 0) 100%),
+  url('/top-bg.jpg');
+  min-height: 300px;
+  height: calc(100vh / 2.5);
+  max-height: 360px;
+  width: 100%;
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+
+  .wrapper{
+    width: 100%;
+    padding: 60px 40px 30px 40px;
+
+    .title{
+      margin-bottom: 50px;
+
+      h2{
+        font-size: 3em;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      h3{
+        font-size: 2em;
+        font-weight: 600;
+      }
+    }
+
+  }
+}
