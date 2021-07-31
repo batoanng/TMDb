@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate-v2';
+import aggregatePaginate from 'mongoose-aggregate-paginate-v2';
 
 //attrs for type checking with typescript
 interface MovieAttrs {
@@ -191,7 +191,7 @@ const MovieSchema = new mongoose.Schema(
 
 MovieSchema.index({ release_date: 1 });
 
-MovieSchema.plugin(mongoosePaginate);
+MovieSchema.plugin(aggregatePaginate);
 MovieSchema.statics.build = (attrs: MovieAttrs) => {
     return new Movie(attrs);
 };

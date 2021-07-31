@@ -1,7 +1,7 @@
 import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
-import { movieIndexRouter } from './routes';
+import { movieRouter } from './routes/movie';
 import { NotFoundError } from './errors/not-found-error';
 import { errorHandler } from './middlewares/error-handler';
 import cors from 'cors';
@@ -15,7 +15,7 @@ app.use(cors());
 app.use(json());
 
 //routers
-app.use(movieIndexRouter);
+app.use(movieRouter);
 
 //handle invalid routes
 app.get('*', async () => {

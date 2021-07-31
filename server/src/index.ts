@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { app } from './app';
+import { initializationService } from './data/init-sample-data';
 
 require('dotenv').config();
 
@@ -19,6 +20,8 @@ const start = async () => {
     } catch (error) {
         console.error(error);
     }
+
+    await initializationService.initSampleData();
 };
 
 start();
