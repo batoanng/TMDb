@@ -1,5 +1,6 @@
 import '../assets/scss/main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-circular-progressbar/dist/styles.css';
 import Head from 'next/head';
 import buildClient from '../apis/build-client';
 import Header from '../components/Header';

@@ -17,6 +17,18 @@
 
   .overview{
     padding: 30px 0 0 0;
+    position: relative;
+
+    .progressBar{
+      width: 34px;
+      height: 34px;
+      font-weight: bold;
+      background-color: #000;
+      border-radius: 50%;
+      position: absolute;
+      left: 10px;
+      top: -17px;
+    }
 
     .title{
       font-weight: 700;

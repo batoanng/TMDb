@@ -1,7 +1,7 @@
 import style from './scss/MovieList.module.scss';
 import MovieCard from './MovieCard';
 
-const MovieList = ({ movies, fetchError = false }) => {
+const MovieList = ({ movies, fetchError = false, highlight = false }) => {
 	return (
 		<div className={style.outer}>
 			{fetchError === false ? (
