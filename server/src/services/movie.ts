@@ -2,9 +2,9 @@ import { Movie } from '../models/movie';
 import { NotFoundError } from '../errors/not-found-error';
 
 const instance = {
-    async getAllMovies(filter: object) {
+    async getAllMovies(params: object) {
         // @ts-ignore
-        const { page, limit, sort_by } = filter;
+        const { page, limit, sort_by, ...filter } = params;
         const options = {
             page: page ? page : 1,
             limit: limit ? limit : 20,
@@ -17,6 +17,21 @@ const instance = {
                 // @ts-ignore
                 sortArg[field] = value === 'desc' ? -1 : 1;
                 aggregate.sort(sortArg);
+            }
+            if (filter) {
+                const filterArg = {};
+                for (const [field, value] of Object.entries(filter)) {
+                    if (field.split('.').length !== 1) {
+                        console.log(value);
+                    } else {
+                        // @ts-ignore
+                        filterArg[field] = this.getFilterValueTypeBaseOnField(
+                            field,
+                            value
+                        );
+                    }
+                }
+                aggregate.match(filterArg);
             }
             aggregate.project({
                 _id: 0,
@@ -40,6 +55,15 @@ const instance = {
             return movies;
         } catch (e) {
             throw new NotFoundError();
+        }
+    },
+
+    getFilterValueTypeBaseOnField(field: string, value: string) {
+        switch (field) {
+            case 'vote_average':
+                return Number.parseFloat(value);
+            default:
+                return value;
         }
     },
 
