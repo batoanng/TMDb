@@ -66,3 +66,20 @@ a:visited:active {
   color: unset;
 }
 
+::-webkit-scrollbar{
+  height: 6px;
+  width: 6px;
+  background: #fff;
+}
+::-webkit-scrollbar-thumb:horizontal{
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+}
+
+.section-title{
+  padding-left: 20px;
+  white-space: nowrap;
+  font-size: 1.7em;
+  font-weight: 600;
+  margin-bottom: 20px;
+}

@@ -7,6 +7,7 @@ module.exports = {
 	},
 	env: {
 		SERVER_API: process.env.SERVER_API,
+		ASSET_API: process.env.ASSET_API,
 	},
 	sassOptions: {
 		includePaths: [path.join(__dirname, 'style')],

@@ -1,10 +1,18 @@
 import style from './scss/MovieList.module.scss';
 import MovieCard from './MovieCard';
 
-const MovieList = () => {
+const MovieList = ({ movies, fetchError = false }) => {
 	return (
-		<div>
-			<MovieCard />
+		<div className={style.outer}>
+			{fetchError === false ? (
+				<div className={style.list}>
+					{movies.map((movie, i) => (
+						<MovieCard movie={movie} key={i} />
+					))}
+				</div>
+			) : (
+				<div></div>
+			)}
 		</div>
 	);
 };

@@ -1,14 +1,15 @@
 import axios from 'axios';
+import { SERVER_API } from './constants';
 
 const buildClient = ({ req }) => {
 	if (typeof window === 'undefined') {
 		return axios.create({
-			baseURL: process.env.SERVER_API,
+			baseURL: SERVER_API,
 			headers: req.headers,
 		});
 	} else {
 		return axios.create({
-			baseURL: process.env.SERVER_API,
+			baseURL: SERVER_API,
 		});
 	}
 };
