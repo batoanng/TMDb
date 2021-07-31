@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import Link from 'next/link';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, size = '' }) => {
 	const calculatePercentage = (vote_average) => {
 		try {
 			return Number.parseFloat(vote_average) * 10;
@@ -30,10 +30,14 @@ const MovieCard = ({ movie }) => {
 	return (
 		<Link href={`/movies/${movie.id}`}>
 			<a>
-				<div className={style.movie}>
+				<div
+					className={`${style.movie} ${size == 'lg' ? style.lg : ''}`}
+				>
 					<Card>
 						<Card.Img
-							className={style.movieImage}
+							className={`${style.movieImage} ${
+								size == 'lg' ? style.lg : ''
+							}`}
 							variant="top"
 							src={getImageUrl(movie.poster_path)}
 						/>

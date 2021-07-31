@@ -24,7 +24,9 @@ const RecommendationMovieCard = ({ movie }) => {
 						/>
 						<Card.Body className={style.overview}>
 							<div>{movie.title}</div>
-							<div>{calculatePercentage(movie.vote_average)}</div>
+							<div>
+								{calculatePercentage(movie.vote_average)}%
+							</div>
 						</Card.Body>
 					</Card>
 				</div>

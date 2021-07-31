@@ -5,19 +5,28 @@
   white-space: normal;
   float: left;
 
+  &.lg{
+    width: 100% !important;
+    margin: 0;
+  }
+
   >div{
     border: none;
   }
 
   .movieImage{
-    min-height: calc(150px * 1.5);
     height: calc(150px * 1.5);
     box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
     border-radius: 8px;
+
+    &.lg{
+      height: 275px;
+      border-radius: 0;
+    }
   }
 
   .overview{
-    padding: 30px 0 0 0;
+    padding: 30px 10px 10px 10px;
     position: relative;
 
     .progressBar{

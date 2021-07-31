@@ -83,3 +83,33 @@ a:visited:active {
   font-weight: 600;
   margin-bottom: 20px;
 }
+
+.title{
+  font-size: 1.6em;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.main-btn{
+  color: #fff !important;
+  font-size: 1.2em !important;
+  line-height: 1 !important;
+  font-weight: 600 !important;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 15px 0 !important;
+  background: rgba(var(--lightBlue), 1) !important;
+  border: none !important;
+  border-radius: 30px !important;
+
+  &:active{
+    background: rgba(var(--lightBlue), 1) !important;
+  }
+
+  &:focus{
+    box-shadow: none !important;
+  }
+}
