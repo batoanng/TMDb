@@ -5,10 +5,10 @@ import { Movie } from './Movie';
 @Entity()
 export class Language {
     @PrimaryColumn()
-    id: string;
+    iso_639_1: string;
 
     @Column()
-    iso_639_1: string;
+    id: string;
 
     @Column()
     english_name: string;

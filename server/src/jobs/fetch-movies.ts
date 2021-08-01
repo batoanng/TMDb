@@ -1,5 +1,4 @@
 const CronJob = require('cron').CronJob;
-import { Movie } from '../models/movie';
 import axios from 'axios';
 
 // const job = new CronJob('* * 0 * * *', async function () {
