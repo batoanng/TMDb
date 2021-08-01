@@ -17,24 +17,38 @@
 * [Assets server](https://www.themoviedb.org/)
 
 ## Project Structure
+![Image](./docs/structure.png)
 
 * `client`: 
   * Interact with user, showing all the movies and allow user to search and see the detail for the movie they want to see.
   * The technology behind are ReactJS and NextJS. The main feature is showing the dynamic movie is build on the client side with React, which help the elements are rendered faster with the partial render
   * NextJS structure allow a clean view for the directory tree, and allow to switch to SSR to enhance the SEO ability.  
 ---
-* `server`: Contain the main logic for reading data, serve as a reader and connect directly with client side, trigger background job to crawl the data.
+* `server`: 
+  * Contain the main logic for reading data, serve as a reader and connect directly with client side, trigger background job to crawl the data.
+  * Writing with typescript for tighten coding style, ease to trace and debug.
+  * Following the microservice structure with is easy to extend and develop. In case shard the database for large proportion of user traffic, it can easy to scale with out affection to writing process.   
 ---
-* `worker`: Taking the action for the background job, fetching the data and serve as a writer node, helps improve performance for the main server.
+* `worker`: 
+  * Taking the action for the background job, fetching the data and serve as a writer node, helps improve performance for the main server.
+  * Easy to scale and extend with impact to the user's viewing experience.  
 ---
-* `message-queue`: Guarantee that the worker takes the job sequentially.
+* `message-queue`: 
+  * Guarantee that the worker takes the job sequentially.
+  * Retry when the transaction failed.
 ---
-* `mysql`: The database for the application.
-    * Data structure:
+* `mysql`: 
+  * The database for the application.
+  * Data structure:
       ![Image](./docs/movie-structure.png)
 ---
-* `redis`: Caching the request, which helps the popular movie can access as fast as possible and improve performance for the database.
-
+* `redis`: 
+  * Caching the request, which helps the popular movie can access as fast as possible and improve performance for the database.
+  * Base on 20-80 rule, this will help to solve the issue when we have the trending movies or in the holiday when we have the large traffic for the top movies.   
+---
+* `asset server`:
+  * which serve for the request of picture, video.
+    
 ## Setup
 * Install dependencies for Back-end. Open terminal in `server` folder, run below command:
 > npm install
