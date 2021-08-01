@@ -10,7 +10,9 @@ const LatestMovieList = () => {
 
 	useEffect(async () => {
 		try {
-			const { data } = await axios.get(`${SERVER_API}${MOVIE_API}`);
+			const { data } = await axios.get(
+				`${SERVER_API}${MOVIE_API}?sort_by=release_date.desc&limit=10`,
+			);
 			setMovies(data.docs);
 		} catch (e) {
 			setHasError(true);

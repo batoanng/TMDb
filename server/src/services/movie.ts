@@ -18,12 +18,17 @@ const instance = {
                 .leftJoinAndSelect('movie.belongs_to_collection', 'Collection')
                 .leftJoinAndSelect('movie.genres', 'Genre')
                 .leftJoinAndSelect('movie.production_companies', 'Company')
-                .leftJoinAndSelect('movie.spoken_languages', 'Language')
-                .skip(skip)
-                .take(limit)
-                .getMany();
+                .leftJoinAndSelect('movie.spoken_languages', 'Language');
+            if (sort_by) {
+                const [field, value] = sort_by.split('.');
+                await movies.orderBy(
+                    `movie.${field}`,
+                    value === 'desc' ? 'DESC' : 'ASC'
+                );
+            }
+            const result = await movies.skip(skip).take(limit).getMany();
             return {
-                docs: movies,
+                docs: result,
                 total,
                 page: pageChecked,
                 limit: limitChecked,

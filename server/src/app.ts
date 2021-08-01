@@ -6,6 +6,7 @@ import { NotFoundError } from './errors/not-found-error';
 import { errorHandler } from './middlewares/error-handler';
 import cors from 'cors';
 import helmet from 'helmet';
+import { peopleRouter } from './routes/people';
 const fs = require('fs');
 const morgan = require('morgan');
 const path = require('path');
@@ -26,6 +27,7 @@ app.use(
 
 //routers
 app.use(movieRouter);
+app.use(peopleRouter);
 
 //handle invalid routes
 app.get('*', async () => {

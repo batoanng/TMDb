@@ -9,7 +9,9 @@ const PopularMovieList = () => {
 
 	useEffect(async () => {
 		try {
-			const { data } = await axios.get(`${SERVER_API}${MOVIE_API}`);
+			const { data } = await axios.get(
+				`${SERVER_API}${MOVIE_API}?sort_by=popularity.desc&limit=10`,
+			);
 			setMovies(data.docs);
 		} catch (e) {
 			setHasError(true);
