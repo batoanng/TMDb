@@ -1,15 +1,18 @@
 import 'reflect-metadata';
-import { app } from './app';
-import fetchMoviesJob from './jobs/fetch-movies';
+import { initializationService } from './data/init-sample-data';
 import { createConnection } from 'typeorm';
-const amqp = require('amqplib/callback_api');
+import express from 'express';
+import movieQueue from './message/movie-queue';
+
+const app = express();
 
 require('dotenv').config();
 
 createConnection().then(() => {
     console.log('Connect to MySQL...');
     const start = async () => {
-        await fetchMoviesJob.start();
+        await initializationService.initSampleData();
+        movieQueue.start();
     };
 
     start();

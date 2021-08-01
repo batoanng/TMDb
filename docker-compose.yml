@@ -19,3 +19,14 @@ services:
       - ./mysql/init:/docker-entrypoint-initdb.d
     expose:
       - 3306
+  rabbitmq:
+    image: rabbitmq:3-management
+    mem_limit: 350m
+    ports:
+      - 5672:5672
+      - 15672:15672
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status" ]
+      interval: 20s
+      timeout: 5s
+      retries: 10
