@@ -33,6 +33,14 @@ const instance = {
                     title: `%${filter.title || ''}%`,
                 });
             }
+            // @ts-ignore
+            if (filter.search) {
+                console.log(filter);
+                movies.orWhere('movie.title LIKE :search', {
+                    // @ts-ignore
+                    search: `%${filter.search || ''}%`,
+                });
+            }
             const total: number = await movies.getCount();
             const result = await movies.skip(skip).take(limitChecked).getMany();
             return {
@@ -42,61 +50,9 @@ const instance = {
                 limit: limitChecked,
                 totalPages: Math.ceil(total / limitChecked),
             };
-            // let aggregate = Movie.aggregate();
-            // if (sort_by) {
-            //     const [field, value] = sort_by.split('.');
-            //     const sortArg = {};
-            //     // @ts-ignore
-            //     sortArg[field] = value === 'desc' ? -1 : 1;
-            //     aggregate.sort(sortArg);
-            // }
-            // if (filter) {
-            //     const filterArg = {};
-            //     for (const [field, value] of Object.entries(filter)) {
-            //         if (field.split('.').length !== 1) {
-            //             console.log(value);
-            //         } else {
-            //             // @ts-ignore
-            //             filterArg[field] = this.getFilterValueTypeBaseOnField(
-            //                 field,
-            //                 value
-            //             );
-            //         }
-            //     }
-            //     aggregate.match(filterArg);
-            // }
-            // aggregate.project({
-            //     _id: 0,
-            //     id: 1,
-            //     adult: 1,
-            //     backdrop_path: 1,
-            //     genres: 1,
-            //     original_language: 1,
-            //     original_title: 1,
-            //     overview: 1,
-            //     popularity: 1,
-            //     poster_path: 1,
-            //     release_date: 1,
-            //     title: 1,
-            //     video: 1,
-            //     vote_average: 1,
-            //     vote_count: 1,
-            // });
-            // // @ts-ignore
-            // const movies = await Movie.aggregatePaginate(aggregate, options);
-            // return movies;
         } catch (e) {
             console.log(e);
             throw new NotFoundError();
-        }
-    },
-
-    getFilterValueTypeBaseOnField(field: string, value: string) {
-        switch (field) {
-            case 'vote_average':
-                return Number.parseFloat(value);
-            default:
-                return value;
         }
     },
 

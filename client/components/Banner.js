@@ -1,6 +1,7 @@
 import style from './scss/Banner.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import React, { useState } from 'react';
+import Router from 'next/router';
 
 const Banner = () => {
 	const [search, setSearch] = useState('');
@@ -12,7 +13,7 @@ const Banner = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (search.length === 0) return;
-		alert(search);
+		Router.push(`/movies/search/${search}`);
 	};
 
 	return (

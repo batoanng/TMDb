@@ -1,0 +1,14 @@
+.result{
+  width: 260px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 20px;
+  color: #fff;
+  background-color: rgba(var(--accountLightBlue), 1);
+  border-radius: 20px;
+}
