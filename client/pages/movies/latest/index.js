@@ -58,7 +58,7 @@ const Latest = () => {
 	return (
 		<Container className="mb-5">
 			<div className="title">Latest Movies</div>
-			<div className="d-flex">
+			<div className="d-block d-xl-flex">
 				<div>
 					<MovieQueryTable
 						query={query}

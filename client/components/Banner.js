@@ -31,7 +31,7 @@ const Banner = () => {
 						<Form.Control
 							type="text"
 							name="search"
-							placeholder="Search for a movie......"
+							placeholder="Search for a movie with everything......"
 							value={search}
 							onChange={handleChange}
 						/>

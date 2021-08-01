@@ -1,3 +1,5 @@
+@import "../../assets/scss/respond";
+
 .banner{
   width: 100%;
   border-bottom: 1px solid var(--primaryColor);
@@ -16,10 +18,18 @@
     padding: 40px 30px;
     color: #fff;
 
+    @include respond(tab-port) {
+      display: block;
+    }
+
     .poster{
       width: 300px;
       height: auto;
       border-radius: 20px;
+
+      @include respond(tab-port) {
+        width: 200px;
+      }
     }
 
     .content{
@@ -28,6 +38,10 @@
       display: flex;
       flex-flow: column;
       justify-content: center;
+
+      @include respond(tab-port) {
+        padding-left: 0;
+      }
 
       .title{
         font-size: 2.2rem;

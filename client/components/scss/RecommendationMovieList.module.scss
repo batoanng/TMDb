@@ -1,6 +1,17 @@
+@import "../../assets/scss/respond";
+
 .outer{
   margin-bottom: 40px;
   max-width: 920px;
+  width: 60vw;
+
+  @include respond(tab-land) {
+    width: 48vw;
+  }
+
+  @include respond(tab-port) {
+    width: 64vw;
+  }
 
   .title{
     font-weight: 600;

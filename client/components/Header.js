@@ -21,7 +21,7 @@ const Header = () => {
 			collapseOnSelect
 			expand="lg"
 			className={style.header}
-			variant="white"
+			variant="dark"
 		>
 			<Container>
 				<Navbar.Brand>
@@ -54,29 +54,6 @@ const Header = () => {
 								</Link>
 							</NavDropdown.Item>
 						</NavDropdown>
-					</Nav>
-					<Nav className="ml-auto">
-						<Nav.Item className="mr-4 mt-1">
-							<Image
-								src="/plus-icon.svg"
-								alt="TMDb"
-								width="24"
-								height="24"
-							/>
-						</Nav.Item>
-						<Nav.Item
-							className={`mr-4 mt-1  mb-1 ${style.language}`}
-						>
-							<div>EN</div>
-						</Nav.Item>
-						<Nav.Item onClick={handleSearch}>
-							<Image
-								src="/search-icon.svg"
-								alt="TMDb"
-								width="36"
-								height="36"
-							/>
-						</Nav.Item>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

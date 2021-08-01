@@ -30,7 +30,7 @@ const MovieDetail = ({ movie, people, recommendationMovies }) => {
 				runtime={movie.runtime}
 				releaseDate={movie.release_date}
 			/>
-			<Container className="d-flex">
+			<Container className="d-flex flex-column flex-md-row">
 				<div className="flex-grow-1 px-5">
 					<PeopleList people={people} />
 					{movie.belongs_to_collection ? (

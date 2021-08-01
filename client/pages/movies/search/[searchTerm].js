@@ -55,7 +55,7 @@ const SearchPage = ({ searchTerm }) => {
 
 	return (
 		<Container className="my-5">
-			<div className="d-flex">
+			<div className="d-block d-xl-flex">
 				<div>
 					<ResultLabel />
 				</div>

@@ -1,7 +1,21 @@
+@import "../../assets/scss/respond";
+
 .grid{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   row-gap: 20px;
+
+  @include respond(tab-land) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include respond(tab-port) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include respond(phone) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   .item{
     display: inline-block;

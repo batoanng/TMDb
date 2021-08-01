@@ -1,5 +1,12 @@
+@import "../../assets/scss/respond";
+
 .column{
   width: 260px;
+
+  @include respond(tab-port) {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 
   .item{
     margin-top: 30px;

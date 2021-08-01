@@ -1,3 +1,5 @@
+@import "../../assets/scss/respond";
+
 .footer {
 	background-image: radial-gradient(at 30% top, #031d33 0%, rgba(var(--darkBlue), 1) 70%);
 	color: #fff;
@@ -6,6 +8,11 @@
 		width: 100%;
 		padding: 30px 60px;
 		display: flex;
+
+		@include respond(tab-port) {
+			display: block;
+			text-align: center;
+		}
 
 		.logo {
 			display: inline-block;
@@ -27,6 +34,10 @@
 			margin-left: 20px;
 			margin-top: 20px;
 			flex-grow: 1;
+
+			@include respond(tab-port) {
+				margin-left: 0;
+			}
 
 			h3 {
 				font-weight: bold;

@@ -1,3 +1,5 @@
+@import "../../assets/scss/respond";
+
 .banner {
   background-image: linear-gradient(to right, rgba(var(--darkBlue), 0.8) 0%, rgba(var(--darkBlue), 0) 100%),
   url('/top-bg.jpg');
@@ -15,6 +17,10 @@
     width: 100%;
     padding: 60px 40px 30px 40px;
 
+    @include respond(tab-land) {
+      padding-top: 30px;
+    }
+
     .title{
       margin-bottom: 50px;
 
@@ -22,11 +28,20 @@
         font-size: 3em;
         font-weight: 700;
         line-height: 1;
+
+        @include respond(tab-port) {
+          font-size: 2rem;
+        }
+
       }
 
       h3{
         font-size: 2em;
         font-weight: 600;
+
+        @include respond(tab-port) {
+          font-size: 1.5rem;
+        }
       }
     }
 
@@ -48,6 +63,10 @@
         border: none;
         border-radius: 30px;
         padding: 10px 20px;
+
+        @include respond(phone) {
+          font-size: 1em;
+        }
       }
 
       button {

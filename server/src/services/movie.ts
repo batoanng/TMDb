@@ -35,8 +35,23 @@ const instance = {
             }
             // @ts-ignore
             if (filter.search) {
-                console.log(filter);
                 movies.orWhere('movie.title LIKE :search', {
+                    // @ts-ignore
+                    search: `%${filter.search || ''}%`,
+                });
+                movies.orWhere('movie.overview LIKE :search', {
+                    // @ts-ignore
+                    search: `%${filter.search || ''}%`,
+                });
+                movies.orWhere('movie.popularity LIKE :search', {
+                    // @ts-ignore
+                    search: `%${filter.search || ''}%`,
+                });
+                movies.orWhere('movie.vote_average LIKE :search', {
+                    // @ts-ignore
+                    search: `%${filter.search || ''}%`,
+                });
+                movies.orWhere('movie.release_date LIKE :search', {
                     // @ts-ignore
                     search: `%${filter.search || ''}%`,
                 });

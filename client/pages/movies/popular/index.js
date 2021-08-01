@@ -56,7 +56,7 @@ const Popular = () => {
 	return (
 		<Container className="mb-5">
 			<div className="title">Popular Movies</div>
-			<div className="d-flex">
+			<div className="d-block d-xl-flex">
 				<div>
 					<MovieQueryTable
 						query={query}

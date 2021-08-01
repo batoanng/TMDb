@@ -21,7 +21,7 @@ const PopularMovieList = () => {
 	return (
 		<div>
 			<div className="section-title">Popular</div>
-			<MovieList movies={movies} fetchError={hasError} />
+			<MovieList movies={movies} fetchError={hasError} highlight={true} />
 		</div>
 	);
 };

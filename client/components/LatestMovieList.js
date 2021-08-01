@@ -22,7 +22,7 @@ const LatestMovieList = () => {
 	return (
 		<div className={style.latestMovie}>
 			<div className="section-title">Latest</div>
-			<MovieList movies={movies} fetchError={hasError} highlight={true} />
+			<MovieList movies={movies} fetchError={hasError} />
 		</div>
 	);
 };
