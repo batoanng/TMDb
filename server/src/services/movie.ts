@@ -12,7 +12,7 @@ const instance = {
             const skip = limitChecked * (pageChecked - 1);
             const connection = await getConnection();
             const movieRepository = connection.getRepository(Movie);
-            const total: number = await movieRepository.count();
+
             const movies = await movieRepository
                 .createQueryBuilder('movie')
                 .leftJoinAndSelect('movie.belongs_to_collection', 'Collection')
@@ -33,6 +33,7 @@ const instance = {
                     title: `%${filter.title || ''}%`,
                 });
             }
+            const total: number = await movies.getCount();
             const result = await movies.skip(skip).take(limitChecked).getMany();
             return {
                 docs: result,
