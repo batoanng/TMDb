@@ -9,11 +9,12 @@ const PersonCard = ({ person }) => {
 				<Card.Img
 					className={style.personImage}
 					variant="top"
-					src={getImageUrl(person.poster_path)}
+					src={getImageUrl(person.profile_path)}
 				/>
 				<Card.Body className={style.overview}>
-					<Card.Title className={style.name}>aaaa</Card.Title>
-					<Card.Text className={style.role}>bbbbb</Card.Text>
+					<Card.Title className={style.name}>
+						{person.name}
+					</Card.Title>
 				</Card.Body>
 			</Card>
 		</div>

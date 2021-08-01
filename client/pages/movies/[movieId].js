@@ -59,12 +59,11 @@ MovieDetail.getInitialProps = async (context, client) => {
 
 	try {
 		const { data: movie } = await client.get(`${MOVIE_API}/${movieId}`);
-		// const { data: people } = await client.get(`${PEOPLE_API}`);
-		const people = [];
+		const { data: people } = await client.get(`${PEOPLE_API}`);
 		const { data: recommendationMovies } = await client.get(`${MOVIE_API}`);
 		return {
 			movie,
-			people,
+			people: people.docs,
 			recommendationMovies: recommendationMovies.docs,
 		};
 	} catch (e) {
