@@ -7,8 +7,9 @@ const instance = {
         // @ts-ignore
         const { page, limit, sort_by, ...filter } = params;
         try {
-            const pageChecked = page ? page : 1;
-            const skip = (limit ? limit : 20) * (pageChecked - 1);
+            const pageChecked = page ? Number.parseInt(page) : 1;
+            const limitChecked = limit ? Number.parseInt(limit) : 20;
+            const skip = limitChecked * (pageChecked - 1);
             const connection = await getConnection();
             const movieRepository = connection.getRepository(Movie);
             const total: number = await movieRepository.count();
@@ -21,13 +22,12 @@ const instance = {
                 .skip(skip)
                 .take(limit)
                 .getMany();
-
             return {
                 docs: movies,
                 total,
-                page,
-                limit,
-                totalPages: Math.ceil(total / limit),
+                page: pageChecked,
+                limit: limitChecked,
+                totalPages: Math.ceil(total / limitChecked),
             };
             // let aggregate = Movie.aggregate();
             // if (sort_by) {
