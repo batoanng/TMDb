@@ -41,7 +41,7 @@ services:
     mem_limit: 550m
     environment:
       - PORT=3000
-      - SERVER_API=http://localhost:8080
+      - SERVER_API=http://server:8080
       - ASSET_API=https://image.tmdb.org/t/p
     ports:
       - 3000:3000
@@ -56,10 +56,14 @@ services:
       - PORT=8080
       - DATA_URI=https://api.themoviedb.org/3
       - DATA_KEY=f4ddcb15ae03dbb850f2910eab68963e
-      - RABBITMQ_CONNECTION_URL=amqp://guest:guest@localhost:5672
+      - RABBITMQ_CONNECTION_URL=amqp://guest:guest@rabbitmq:5672
       - QUEUE_NAME=fetch-movie
-      - REDIS_URL=redis://localhost:6379
+      - REDIS_URL=redis://redis-server:6379
       - REDIS_PASS=123456
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=rootpassword
     ports:
       - 8080:8080
   worker:
@@ -72,7 +76,11 @@ services:
       - PORT=8081
       - DATA_URI=https://api.themoviedb.org/3
       - DATA_KEY=f4ddcb15ae03dbb850f2910eab68963e
-      - RABBITMQ_CONNECTION_URL=amqp://guest:guest@localhost:5672
+      - RABBITMQ_CONNECTION_URL=amqp://guest:guest@rabbitmq:5672
       - QUEUE_NAME=fetch-movie
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=rootpassword
     ports:
       - 8081:8081
