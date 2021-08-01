@@ -5,6 +5,30 @@ import { Button } from 'react-bootstrap';
 const MovieQueryTable = ({ query, setQuery, search }) => {
 	const [showSearch, setShowSearch] = useState(false);
 	const [showFilter, setShowFilter] = useState(false);
+
+	const handleChangeSort = (e) => {
+		setQuery({
+			...query,
+			sort_by: e.target.value,
+		});
+	};
+
+	const handleChangeFilter = (e) => {
+		setQuery({
+			...query,
+			title: e.target.value,
+		});
+	};
+
+	const handleSearch = async () => {
+		const newQuery = {
+			...query,
+			page: 1,
+		};
+		setQuery(newQuery);
+		await search(newQuery);
+	};
+
 	return (
 		<div className={style.table}>
 			<div className={style.item}>
@@ -24,7 +48,20 @@ const MovieQueryTable = ({ query, setQuery, search }) => {
 					}}
 					className={style.content}
 				>
-					test
+					<h6>Sort Results By</h6>
+					<select
+						className={style.selectSort}
+						onChange={handleChangeSort}
+					>
+						<option value="popularity.desc">
+							Popularity Descending
+						</option>
+						<option value="popularity.asc">
+							Popularity Ascending
+						</option>
+						<option value="title.desc">Title Descending</option>
+						<option value="title.asc">Title Ascending</option>
+					</select>
 				</div>
 			</div>
 			<div className={style.item}>
@@ -44,10 +81,15 @@ const MovieQueryTable = ({ query, setQuery, search }) => {
 					}}
 					className={style.content}
 				>
-					test
+					<input
+						className={style.filterName}
+						onChange={handleChangeFilter}
+						type="text"
+						placeholder="Movie name..."
+					/>
 				</div>
 			</div>
-			<Button block onClick={() => search(query)} className="main-btn">
+			<Button block onClick={handleSearch} className="main-btn">
 				Search
 			</Button>
 		</div>

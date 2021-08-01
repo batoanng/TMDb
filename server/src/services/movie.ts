@@ -26,7 +26,14 @@ const instance = {
                     value === 'desc' ? 'DESC' : 'ASC'
                 );
             }
-            const result = await movies.skip(skip).take(limit).getMany();
+            // @ts-ignore
+            if (filter.title) {
+                movies.andWhere('movie.title LIKE :title', {
+                    // @ts-ignore
+                    title: `%${filter.title || ''}%`,
+                });
+            }
+            const result = await movies.skip(skip).take(limitChecked).getMany();
             return {
                 docs: result,
                 total,

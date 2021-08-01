@@ -9,25 +9,51 @@ import MovieGrid from '../../../components/MovieGrid';
 const Latest = () => {
 	const [movies, setMovies] = useState([]);
 	const [hasError, setHasError] = useState(false);
+	const [totalPages, setTotalPages] = useState(0);
 	const [query, setQuery] = useState({
 		page: 1,
 		limit: 20,
 	});
 	const API = `${SERVER_API}${MOVIE_API}`;
-	const { doRequest, error } = useRequest(API, 'get', {}, (data) => {
-		console.log(data);
+	const { doRequest, error } = useRequest(API, 'get', {}, query, (data) => {
+		setMovies(data.docs);
+		setTotalPages(data.totalPages);
 		setHasError(false);
 	});
 
+	const { doRequest: loadMore, err } = useRequest(
+		API,
+		'get',
+		{},
+		query,
+		(data) => {
+			setMovies([...movies, ...data.docs]);
+			setTotalPages(data.totalPages);
+			setHasError(false);
+		},
+	);
+
 	useEffect(async () => {
 		try {
-			const { data } = await axios.get(API);
+			const { data } = await axios.get(
+				`${API}?sort_by=release_date.desc`,
+			);
 			setMovies(data.docs);
 			setHasError(false);
+			setTotalPages(data.totalPages);
 		} catch (e) {
 			setHasError(true);
 		}
 	}, []);
+
+	const handleLoadmore = async () => {
+		const newQuery = {
+			...query,
+			page: query.page + 1,
+		};
+		setQuery(newQuery);
+		await loadMore(newQuery);
+	};
 
 	return (
 		<Container className="mb-5">
@@ -42,13 +68,17 @@ const Latest = () => {
 				</div>
 				<div className="flex-grow-1">
 					<MovieGrid movies={movies} />
-					<Button
-						block
-						onClick={() => doRequest(query)}
-						className="main-btn mt-4"
-					>
-						Load More
-					</Button>
+					{query.page < totalPages && movies.length !== 0 ? (
+						<Button
+							block
+							onClick={handleLoadmore}
+							className="main-btn mt-4"
+						>
+							Load More
+						</Button>
+					) : (
+						''
+					)}
 				</div>
 			</div>
 		</Container>

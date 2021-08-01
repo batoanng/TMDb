@@ -2,12 +2,12 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Alert } from 'react-bootstrap';
 
-const useRequest = (url, method, body, onSuccess) => {
+const useRequest = (url, method, body, params = {}, onSuccess) => {
 	const [error, setError] = useState(null);
 
-	const doRequest = async (props = {}) => {
+	const doRequest = async (query) => {
 		try {
-			const res = await axios[method](url, { ...body, ...props });
+			const res = await axios[method](url, { ...body, params: query });
 			setError(null);
 			onSuccess && onSuccess(res.data);
 			return res.data;
