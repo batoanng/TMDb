@@ -1,6 +1,11 @@
+// @ts-nocheck
 import { NotFoundError } from '../errors/not-found-error';
 import { getConnection } from 'typeorm';
 import { Movie } from '../entity/Movie';
+import redisClient from '../redis/redis-client';
+const util = require('util');
+
+redisClient.get = util.promisify(redisClient.get);
 
 const instance = {
     async getAllMovies(params: object) {
@@ -73,6 +78,10 @@ const instance = {
 
     async getMovie(id: string) {
         try {
+            const cacheValue = await redisClient.get(id);
+            if (cacheValue) {
+                return JSON.parse(cacheValue);
+            }
             const connection = await getConnection();
             const movieRepository = connection.getRepository(Movie);
             const movie = await movieRepository
@@ -84,6 +93,9 @@ const instance = {
                 .where('movie.id = :id', { id: Number.parseInt(id) })
                 .getOne();
             if (!movie) throw new Error();
+            redisClient.set(id, JSON.stringify(movie), (err, reply) => {
+                console.log('Cache: ', id);
+            });
             return movie;
         } catch (e) {
             throw new NotFoundError();

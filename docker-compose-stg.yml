@@ -1,4 +1,78 @@
 version: '2.1'
 
 services:
-
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_USER=mysqluser
+      - MYSQL_PASSWORD=mysqlpw
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: [ "CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD' ]
+      interval: 20s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    expose:
+      - 3306
+  rabbitmq:
+    image: rabbitmq:3-management
+    mem_limit: 350m
+    ports:
+      - 5672:5672
+      - 15672:15672
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status" ]
+      interval: 20s
+      timeout: 5s
+      retries: 10
+  redis-server:
+    image: redis:latest
+    mem_limit: 350m
+    command: redis-server --requirepass 123456
+    ports:
+      - "6379:6379"
+  client:
+    build: client
+    mem_limit: 550m
+    environment:
+      - PORT=3000
+      - SERVER_API=http://localhost:8080
+      - ASSET_API=https://image.tmdb.org/t/p
+    ports:
+      - 3000:3000
+  server:
+    build: server
+    mem_limit: 550m
+    depends_on:
+      - mysql
+      - rabbitmq
+      - redis-server
+    environment:
+      - PORT=8080
+      - DATA_URI=https://api.themoviedb.org/3
+      - DATA_KEY=f4ddcb15ae03dbb850f2910eab68963e
+      - RABBITMQ_CONNECTION_URL=amqp://guest:guest@localhost:5672
+      - QUEUE_NAME=fetch-movie
+      - REDIS_URL=redis://localhost:6379
+      - REDIS_PASS=123456
+    ports:
+      - 8080:8080
+  worker:
+    build: worker
+    mem_limit: 550m
+    depends_on:
+      - mysql
+      - rabbitmq
+    environment:
+      - PORT=8081
+      - DATA_URI=https://api.themoviedb.org/3
+      - DATA_KEY=f4ddcb15ae03dbb850f2910eab68963e
+      - RABBITMQ_CONNECTION_URL=amqp://guest:guest@localhost:5672
+      - QUEUE_NAME=fetch-movie
+    ports:
+      - 8081:8081

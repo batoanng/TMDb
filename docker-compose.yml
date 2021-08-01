@@ -30,3 +30,9 @@ services:
       interval: 20s
       timeout: 5s
       retries: 10
+  redis-server:
+    image: redis:latest
+    mem_limit: 350m
+    command: redis-server --requirepass 123456
+    ports:
+      - "6379:6379"
