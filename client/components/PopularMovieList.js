@@ -1,3 +1,4 @@
+import style from './scss/PopularMovieList.module.scss';
 import MovieList from './MovieList';
 import { useEffect, useState } from 'react';
 import { MOVIE_API, SERVER_API } from '../apis/constants';
@@ -19,7 +20,7 @@ const PopularMovieList = () => {
 	}, []);
 
 	return (
-		<div>
+		<div className={style.popularMovie}>
 			<div className="section-title">Popular</div>
 			<MovieList movies={movies} fetchError={hasError} highlight={true} />
 		</div>

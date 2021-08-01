@@ -2,7 +2,6 @@ import MovieList from './MovieList';
 import { useEffect, useState } from 'react';
 import { MOVIE_API, SERVER_API } from '../apis/constants';
 import axios from 'axios';
-import style from './scss/LatestMovieList.module.scss';
 
 const LatestMovieList = () => {
 	const [movies, setMovies] = useState([]);
@@ -20,7 +19,7 @@ const LatestMovieList = () => {
 	}, []);
 
 	return (
-		<div className={style.latestMovie}>
+		<div>
 			<div className="section-title">Latest</div>
 			<MovieList movies={movies} fetchError={hasError} />
 		</div>
