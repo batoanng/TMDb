@@ -1,16 +1,21 @@
 version: '2.1'
 
 services:
-  mongodb:
-    image: mongo:4.4
-    mem_limit: 550m
-    ports:
-      - "27017:27017"
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_USER=mysqluser
+      - MYSQL_PASSWORD=mysqlpw
+    ports:
+      - 3306:3306
     healthcheck:
-      test: "mongo --eval 'db.stats().ok'"
+      test: [ "CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD' ]
       interval: 20s
       timeout: 5s
       retries: 10
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    expose:
+      - 3306
