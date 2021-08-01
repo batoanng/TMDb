@@ -9,4 +9,4 @@ RUN rm -rf node_modules
 RUN npm install --only=production
 COPY . .
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
