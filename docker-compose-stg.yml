@@ -41,7 +41,7 @@ services:
     mem_limit: 550m
     environment:
       - PORT=3000
-      - SERVER_API=http://server:8080
+      - SERVER_API=http://localhost:8080
       - ASSET_API=https://image.tmdb.org/t/p
     ports:
       - 3000:3000
