@@ -1,5 +1,13 @@
 # TMDB
 ![Image](./docs/demonstration.png)
+This is my 36-hour coding challenge. The topic is:
+- Create A Movies List App using React.js And Node.js for API.
+- Consume TMDb API in Node.js for Data. [https://www.themoviedb.org/documentation/api/discover](https://www.themoviedb.org/documentation/api/discover)
+- Show Movies List Page With Tab for Latest & Popular and Movie Detail Page.
+- Create a middleware in Node.js for Logging.
+- For List Design Reference - [https://www.themoviedb.org/?language=en-US](https://www.themoviedb.org/?language=en-US) , And For Details Page Designs Reference - [https://www.themoviedb.org/movie/181812-star-wars-the-rise-of-skywalker?language=en-US](https://www.themoviedb.org/movie/181812-star-wars-the-rise-of-skywalker?language=en-US).
+- Store Movies Data in SQL DB and add logic to refresh data once per day.
+- You can go for minimal design due to the time concern, but it should look nice.
 
 ## Prerequisites
 
@@ -56,7 +64,7 @@
 * Install dependencies for Front-end. Open terminal in `client` folder, run below command:
 > npm install
 
-* Install dependencies for Front-end. Open terminal in `worker` folder, run below command:
+* Install dependencies for Worker. Open terminal in `worker` folder, run below command:
 > npm install
 
 ## Run: 2 ways
